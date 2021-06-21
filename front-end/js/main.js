@@ -2,13 +2,13 @@
 var adminAddress = "0x24491353934e9Dba3b49c3dD9f19dd27771aD00c"
 
 // Ethereum mainNet staking contract
-var stakingContract = "0x4e5B7E709d1D917BDD0a424236e8FAFe18317Acd"
+var stakingContract = "0x7a51a46aAc4C854e793df8856e1BDFCF83675230"
 
 // Ethereum mainNet $SPI token contract
 var SPIContract = "0x83fc1517301cc326e2551aafde356ad50a402eaa"
 
 // Binance Smart Chain staking contract 
-var stakingContractOnBinanceChain = "0x4e5B7E709d1D917BDD0a424236e8FAFe18317Acd"
+var stakingContractOnBinanceChain = "0x7a51a46aAc4C854e793df8856e1BDFCF83675230"
 
 // Binance Smart Chain $GSPI contract
 var GSPIContract = "0x83fc1517301cc326e2551aafde356ad50a402eaa"
@@ -200,6 +200,25 @@ $(document).ready(function() {
         }
     })
     
+    $(".adminpanel").on("click", "#adminDripDepositToken", function() {
+        let value = parseFloat($("#adminDripDepositInput").val())
+        if(value > 0) {
+            if(value <= parseFloat(User.balance)) {
+                adminDripDepositToken(web3.utils.toWei(value.toString()))
+                click.play()
+            }
+            else {
+                $(".adminpanel").addClass("shake")
+                setTimeout(function(){$(".adminpanel").removeClass("shake")}, 300)
+                error.play()
+            }
+        } else {
+            $(".adminpanel").addClass("shake")
+            setTimeout(function(){$(".adminpanel").removeClass("shake")}, 300)
+            error.play()
+        }
+    })
+    
     $(".adminpanel").on("click", "#changeEmissionRate", function() {
         let value = newEmissionRate
         console.log(newEmissionRate)
@@ -328,10 +347,11 @@ async function fetchStakingData() {
             await Stake.methods.dripBalance().call().then(function(r) {
                 if(User.dripRewards != r) {
                     User.dripRewards = r
-                    $("#dripRewardsMsg").html('Your dripped rewards: '+web3.utils.fromWei(r)+' [ <span id="claimDrip">claim</span> ]')
-                }
-                else {
-                    $("#dripRewardsMsg").text("No drip rewards...")
+                    if(User.dripRewards > 0) {
+                        $("#dripRewardsMsg").html('Your dripped rewards: <span class="coin"></span>'+web3.utils.fromWei(r)+' [ <span id="claimDrip">claim</span> ]')
+                    } else {
+                        $("#dripRewardsMsg").text("No drip rewards...")
+                    }
                 }
             })
         }
@@ -365,8 +385,14 @@ async function fetchStakingData() {
                 $(".percentInPool").text(toFixed(percent * 100000, 2))
             }
         })
-        
-        Contract.dripPool = await Stake.methods.dripPool().call()
+
+        await Stake.methods.dripPool().call().then(function(r) {
+            if(Contract.dripPool != r) {
+                Contract.dripPool = r
+                let dripBalance = toFixed(web3.utils.fromWei(Contract.dripPool), 6)
+                refresh($(".dripBalance"), dripBalance)
+            }
+        })
     }
     catch(e) {
         console.error(e)
@@ -526,6 +552,21 @@ async function adminDepositToken(value) {
         })
         .on("receipt", function(receipt) {
             notify("success", "Airdrop", "Confirmed!", receipt.transactionHash)
+        })
+    }
+    catch(e) {
+        console.error(e)
+    }
+}
+
+async function adminDripDepositToken(value) {
+    try {
+        await Stake.methods.addDrip(value).send({from: User.address})
+        .on("transactionHash", function(hash) {
+            notify("loading", "Add drip", "Pending...", hash)
+        })
+        .on("receipt", function(receipt) {
+            notify("success", "Add drip", "Confirmed!", receipt.transactionHash)
         })
     }
     catch(e) {
