@@ -1,0 +1,476 @@
+:root {
+    --background-dark: #11557b;
+    --background-light: #1582a3;
+    --background-transparent: rgba(255, 255, 255, 0.1);
+    --background-transparent-2: rgba(255, 255, 255, 0.4);
+    --font-light: #f8f9fa;
+    --font-cyan: #1cdede;
+    --font-antique: antiquewhite;
+}
+.loadingscreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 200%;
+    position: fixed;
+    top: 0; right: 0; left: 0; bottom: 0;
+    background: var(--background-dark);
+    color: var(--font-light);
+    z-index: 1000;
+    pointer-events: none;
+}
+
+* {margin: 0; padding: 0; box-sizing: border-box;}
+html {
+
+	background-image: url(../img/bg.4198914f.png);
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+body, input, select, option {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+}
+button {
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 14px;
+    background-color: #00b0ad;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all .33s ease-in-out;
+    border: 0;
+    outline: none;
+}
+input, select, option {
+    border-radius: 14px;
+    border: 0;
+    padding: 5px;
+    background: var(--background-transparent);
+    color: var(--font-light);
+}
+select {
+    margin-left: 5px;
+}
+option {
+    background: var(--background-dark);
+}
+input:active,
+input:focus,
+input:hover {
+    outline: none;
+}
+table {
+    padding-right: 2px;
+}
+td {
+    display: inline-block;
+    width: 25%;
+}
+td:last-child {
+    text-align: right;
+}
+.font-90p {
+    font-size: 90%;
+}
+#claimDrip {
+    cursor: pointer;
+}
+#claimDrip:hover {
+    border-bottom: 2px solid white;
+}
+#adjustedEmissionRate {
+    display: none;
+}
+.adminsection {
+    margin: 10px 0;
+}
+
+.flex {
+    display: flex;
+}
+
+.col {
+    flex-direction: column;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.watermark {
+    width: 100%;
+    text-align: right;
+    padding: 10px;
+}
+
+.link {
+    font-weight: bold;
+}
+
+.link a,
+.link a:hover, 
+.link a:active,
+.link a:focus {
+    text-decoration: none;
+    color: var(--font-light);
+    transition: opacity 0.3s;
+    opacity: 0.7;
+}
+
+.link a:hover {
+    opacity: 1;
+}
+
+.panel {
+    opacity: 0;
+    transition: opacity 0.3s;
+    -webkit-transition: opacity 0.3s;
+}
+
+.header {
+    background: var(--background-dark);
+    color: var(--font-light);
+    padding: 14px 0;
+    position: relative;
+    height: 80px;
+    box-shadow: 0 22px 17.5px rgb(0 0 0 / 13%);
+    z-index: 20;
+}
+
+.header h1 {
+    font-size: 150%;
+}
+
+.listheader {
+    font-weight: bold;
+    border-bottom: 1px solid var(--font-light);
+    padding: 5px 0;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.content {
+    position: relative;
+    display: grid;
+    grid-gap: 42px 42px;
+    grid-template-columns: 500px 500px;
+    justify-content: center;
+    /*
+    background-image: url(../img/background.png);
+    background-color: var(--background-light);
+    background-repeat: no-repeat;
+    background-size: cover;
+    */
+    width: 100%;
+    min-height: 100vh;
+    padding: 50px 12%;
+}
+
+.notifications {
+    position: absolute;
+    top: 0; right: 0;
+    width: 300px;
+    height: 100%;
+    pointer-events: none;
+    padding: 5px;
+    z-index: 1000;
+}
+
+.loading-icon-wrapper {
+    margin-right: 20px;
+}
+
+.loading-icon-wrapper i {
+    font-size: 200%;
+}
+
+.notification {
+    border-radius: 5px;
+    position: relative;
+    color: var(--font-light);
+    pointer-events: all;
+    background: var(--background-transparent);
+    width: 100%;
+    height: 100px;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.notification h3 {
+    font-size: 120%;
+}
+
+.notification a,
+.notification a:hover,
+.notification a:active,
+.notification a:visited {
+    text-decoration: none;
+    color: var(--font-light);
+}
+
+.section {
+    /* background: var(--background-dark); */
+    border-radius: 26px;
+    color: var(--font-cyan);
+    padding: 20px;
+    width: 100%;
+    max-width: 512px;
+    justify-content: flex-start;
+    justify-items: flex-start;
+    align-items: flex-start;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#146591+0,11557b+100 */
+    background: #11557b; 
+}
+
+.disabled {
+    pointer-events: none;
+    filter: blur(5px);
+    transition: filter 0.3s;
+}
+
+.section h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.deposit {
+    position: relative;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.withdraw {
+    position: relative;
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.extended {
+    position: relative;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+
+.activestakes {
+    position: relative;
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+
+.deposit .wallpaper {
+    background: url(../img/safe.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 42%;
+}
+.withdraw .wallpaper {
+    background: url(../img/withdraw.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 42%;
+}
+.extended .wallpaper {
+    background: url(../img/profit.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 42%;
+}
+.activestakes .wallpaper {
+    background: url(../img/time.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 42%;
+}
+.connectwallet .wallpaper {
+    background: url(../img/connect.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 32%;
+}
+
+.adminpanel .wallpaper {
+    background: url(../img/admin.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 32%;
+}
+
+.adminpanel {
+    display: none;
+    z-index: 9999;
+    box-shadow: 0 0 20px;
+}
+
+.connectwallet {
+    z-index: 10000;
+}
+
+.adminpanel .close {
+    width: 32px; height: 32px;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    background: url(../img/close.png);
+    background-size: cover; 
+    cursor: pointer;
+}
+
+.wallpaper {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.subsection {
+    margin: 20px 0;
+    z-index: 1;
+    min-height: 100px;
+    max-height: 150px;
+}
+
+.activeStakesList {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.stakelist {
+    justify-content: space-between;
+}
+
+.title,
+#Wallet {
+    margin: 0 20px;
+}
+
+.label-small {
+    color: var(--font-antique);
+}
+
+.left5px {
+    margin-left: 5px;
+}
+.leftright5px {
+    margin: 0px 5px;
+}
+.topbottom5px {
+    margin: 5px 0;
+}
+
+.blockie-border {
+    position: relative;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    margin: 0 10px;
+    border: 2px solid var(--font-antique);
+    overflow: hidden;
+}
+.blockie {
+    width: 32px; height: 32px;
+    position: absolute;
+    top: -2px; left: -2px;
+}
+
+.shake {
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px
+}
+
+::-webkit-scrollbar-track {
+	background: var(--background-dark)
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--background-light);
+    background-clip: content-box;
+    border: 2px solid transparent;
+}
+
+@media all and (max-width: 1100px) {
+    .content {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 50px 5px;
+    }
+    .notifications {
+        position: fixed;
+        padding-top: 80px;
+    }
+    .notification {
+        background: var(--background-dark);
+        border: 1px solid antiquewhite;
+    }
+}
+
+@media all and (max-width: 500px) {
+    .optionselect {
+        flex-direction: column;
+    }
+    #extendedStake, select {
+        margin: 5px 0;
+    }
+    #Wallet {
+        position: fixed;
+        bottom: 10px; right: 0;
+    }
+    #Connect {
+        background: var(--background-dark);
+    }
+    .navigation {
+        margin: 0 10px;
+    }
+    body {
+        font-size: 90%;
+    }
+    table button {
+        padding: 4px 10px;
+        font-size: 90%;
+    }
+    table {
+        font-size: 95%;
+    }
+}
