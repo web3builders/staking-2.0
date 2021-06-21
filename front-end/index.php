@@ -152,27 +152,37 @@
             <div class="flex col">
                 <div class="flex col">
                     <h2>Admin panel</h2>
+                    <div class="label"><span class="coin"></span><span class="erc20Balance left5px">0.00</span> in wallet</div>
                     <div class="flex col adminsection">
-                        <div class="label-small flex col"><span>Airdrop rewards to your users (make sure you approved the token first)</span></div>
-                        <div class="label"><span class="coin"></span><span class="erc20Balance left5px">0.00</span> in wallet</div>
+                        <div class="label-small flex col"><span>Airdrop rewards to your users</span></div>
                         <div class="flex">
                             <input id="adminDepositInput" type="number" min="0">
                             <button id="adminDepositToken" class="leftright5px">Confirm</button>
                         </div>
                     </div>
                     <div class="flex col adminsection">
+                        <div class="label-small flex col"><span>Top up the drip pool</span></div>
+                        <div class="label">Drip pool balance: <span class="coin"></span><span class="dripBalance left5px">0.00</span></div>
+                        <div class="flex">
+                            <input id="adminDripDepositInput" type="number" min="0">
+                            <button id="adminDripDepositToken" class="leftright5px">Confirm</button>
+                        </div>
+                    </div>                    
+                    <!-- This is irrelevant now
+                    
+                    <div class="flex col adminsection">
                         <div class="label-small flex col"><span>Rewards available in contract</span></div>
                         <div class="label"><span class="coin"></span><span class="contractBalance left5px">0.00</span></div>
-                    </div>
+                    </div>-->
                     <div class="flex col adminsection">
                         <div class="label-small flex col"><span>Change the emission rate</span></div>
-                        <div class="label">Current: <span class="coin"></span> <span class="per11Days"></span> <span>per 1 <span class="coin"></span> staked for 11 days</span></div>
+                        <div class="label">Current: <span class="coin"></span> <span class="per11Days"></span> <!--<span>per 1 <span class="coin"></span> staked for 11 days</span>--></div>
                         <div class="flex">
                             <input id="emissionRateInput" type="number" min="0">
                             <button id="changeEmissionRate" class="leftright5px">Confirm</button>
                         </div>
                         <div id="adjustedEmissionRate" class="label-small">
-                            <span class="coin"></span> <span id="newEmissionRate"></span> <span>per 1 <span class="coin"></span> staked for 11 days</span>
+                            <span class="coin"></span> <span id="newEmissionRate"></span> <!--<span>per 1 <span class="coin"></span> staked for 11 days</span>-->
                         </div>
                     </div>
                 </div>
