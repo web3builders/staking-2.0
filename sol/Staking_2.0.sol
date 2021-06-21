@@ -171,7 +171,7 @@ contract Staking {
 		delete stakes[msg.sender][playerStakeCount - 1];
 	}
 
-	function claimDrip() internal {
+	function claimDrip() public {
 		uint256 dripToMove = dripBalance();
 		dripPool = SafeMath.sub(dripPool, dripToMove);
 		lastDripCollected = uint32(now);
